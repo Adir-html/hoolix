@@ -7,11 +7,13 @@
  */
 
 const addEventOnElem = function (elem, type, callback) {
-  if (elem.length > 1) {
+  // Check if elem is a NodeList or Array
+  if (elem instanceof NodeList || Array.isArray(elem)) {
     for (let i = 0; i < elem.length; i++) {
       elem[i].addEventListener(type, callback);
     }
   } else {
+    // This handles single elements AND the window object correctly
     elem.addEventListener(type, callback);
   }
 }
